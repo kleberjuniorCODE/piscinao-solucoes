@@ -1,5 +1,11 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Catálogo de Produtos | Piscinão Soluções',
+  description: 'Conheça toda a linha de produtos para piscinas, equipamentos e tratamento químico.',
+};
 import { getProducts, getCategories } from '@/app/actions/products';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -19,6 +25,8 @@ export default async function CatalogoPage({ searchParams }: { searchParams: { [
         <span>/</span>
         <span className="text-gray-900">Catálogo</span>
       </nav>
+
+      <h1 className="text-3xl font-extrabold text-[#202020] mb-6">Catálogo de Produtos</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="w-full md:w-64 space-y-6">

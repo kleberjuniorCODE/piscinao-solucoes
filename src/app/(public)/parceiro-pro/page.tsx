@@ -13,7 +13,7 @@ export default function ParceiroProPage() {
     <div className="w-full pb-16">
       <section className="bg-primary text-white py-20 text-center">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Seja um Parceiro PRO</h1>
+          <h1 className="text-4xl font-bold mb-4">Programa Parceiro Pro</h1>
           <p className="text-lg max-w-2xl mx-auto">Benefícios exclusivos para tratadores de piscina, arquitetos e construtoras.</p>
         </div>
       </section>

@@ -1,272 +1,367 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Container } from '@/components/ui/container'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
-import { formatCurrency } from '@/lib/utils'
-import { Droplets, Star, ChevronRight } from 'lucide-react'
+import { Heart, ArrowRight, DollarSign, Headphones, Wrench, Handshake, Droplets } from 'lucide-react'
+
+// Categorias principais exibidas exatamente como no layout de referência
+const categoryShortcuts = [
+  {
+    name: 'Piscina em Dia',
+    slug: 'piscina-em-dia',
+    image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=300&q=80',
+    alt: 'Piscina limpa com água cristalina',
+  },
+  {
+    name: 'Produtos para Tratamento',
+    slug: 'produtos-para-tratamento',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&q=80',
+    alt: 'Produtos químicos para tratamento',
+  },
+  {
+    name: 'Bombas e Filtros',
+    slug: 'bombas-e-filtros',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=300&q=80',
+    alt: 'Bomba e filtro para piscina',
+  },
+  {
+    name: 'Aquecimento',
+    slug: 'aquecimento',
+    image: 'https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?w=300&q=80',
+    alt: 'Sistema de aquecimento',
+  },
+  {
+    name: 'Gerador de Cloro',
+    slug: 'gerador-de-cloro',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=300&q=80',
+    alt: 'Gerador de cloro a base de sal',
+  },
+  {
+    name: 'Decks e Revestimentos',
+    slug: 'decks-e-revestimentos',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=300&q=80',
+    alt: 'Deck de madeira para piscina',
+  },
+  {
+    name: 'Móveis Externos',
+    slug: 'moveis-externos',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=300&q=80',
+    alt: 'Espreguiçadeiras e móveis de área externa',
+  },
+  {
+    name: 'Parceiro Pro',
+    slug: 'parceiro-pro',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=300&q=80',
+    alt: 'Capacete e projetos para parceiros',
+    isSpecial: true,
+  },
+]
+
+// 5 Produtos em destaque exatamente como na proposta visual
+const featuredProducts = [
+  {
+    id: 'prod-1',
+    name: 'Cloro Granulado 10kg',
+    slug: 'cloro-granulado-10kg',
+    price: 'R$ 199,90',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=350&q=80',
+  },
+  {
+    id: 'prod-2',
+    name: 'Filtro de Areia para Piscina',
+    slug: 'filtro-de-areia-para-piscina',
+    price: 'R$ 1.299,90',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=350&q=80',
+  },
+  {
+    id: 'prod-3',
+    name: 'Robô Aspirador de Piscina',
+    slug: 'robo-aspirador-de-piscina',
+    price: 'R$ 3.499,90',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=350&q=80',
+  },
+  {
+    id: 'prod-4',
+    name: 'Trocador de Calor para Piscina',
+    slug: 'trocador-de-calor-para-piscina',
+    price: 'R$ 4.990,00',
+    image: 'https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?w=350&q=80',
+  },
+  {
+    id: 'prod-5',
+    name: 'Refletor LED RGB para Piscina',
+    slug: 'refletor-led-rgb-para-piscina',
+    price: 'R$ 599,90',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=350&q=80',
+  },
+]
 
 export default function HomePage() {
   return (
-    <>
-      {/* Section 1: Hero Banner */}
-      <section className="relative w-full h-[600px] flex items-center">
-        <div className="absolute inset-0 bg-primary/80 z-10" /> {/* Fallback overlay */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576013551627-11971f36e429?q=80&w=2070&auto=format&fit=crop")' }}
-        />
-        <Container className="relative z-20 text-white">
-          <div className="max-w-2xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-              Tudo para sua piscina em um só lugar
+    <div className="bg-[#FAF7F2] min-h-screen">
+      {/* 1. HERO BANNER - Idêntico à referência */}
+      <section className="relative w-full h-[460px] md:h-[540px] lg:h-[600px] overflow-hidden">
+        {/* Background Image: Piscina de luxo, deck de madeira e espreguiçadeiras */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=2070&auto=format&fit=crop')`,
+          }}
+        >
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-transparent" />
+        </div>
+
+        <Container className="relative h-full flex items-center">
+          <div className="max-w-xl text-white space-y-4 md:space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold leading-[1.15] tracking-tight">
+              Sua solução completa <br className="hidden sm:inline" />
+              para piscina e área de lazer
             </h1>
-            <p className="text-lg md:text-xl text-white/90">
-              Equipamentos, produtos químicos e serviços especializados para manter sua água sempre cristalina e saudável.
+            <p className="text-sm md:text-base text-white/90 font-normal leading-relaxed max-w-lg">
+              Qualidade, variedade e suporte especializado para o seu projeto, do cuidado diário aos grandes sonhos.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 font-semibold" asChild>
-                <Link href="/catalogo">Ver Catálogo</Link>
-              </Button>
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/analise-agua">Análise Gratuita</Link>
-              </Button>
+            <div className="pt-2">
+              <Link
+                href="/catalogo"
+                className="inline-flex items-center gap-2 bg-[#66361C] hover:bg-[#522a14] text-white text-sm md:text-base font-semibold px-6 py-3.5 rounded-md transition-all shadow-lg hover:shadow-xl hover:translate-x-0.5"
+              >
+                <span>Conheça nossos produtos</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Section 2: Category Grid */}
-      <section className="py-20 bg-gray-50">
+      {/* 2. CATÁLOGO ORGANIZADO POR CATEGORIAS PRINCIPAIS - Faixa de 8 Atalhos Visuais */}
+      <section className="py-6 md:py-8 border-b border-gray-200/80 bg-white">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Nossas Categorias</h2>
-            <p className="text-gray-600">Encontre o que você precisa rapidamente</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { name: 'Químicos', count: 124, slug: 'quimicos', icon: '🧪' },
-              { name: 'Equipamentos', count: 56, slug: 'equipamentos', icon: '⚙️' },
-              { name: 'Acessórios', count: 89, slug: 'acessorios', icon: '🛟' },
-              { name: 'Aquecimento', count: 23, slug: 'aquecimento', icon: '☀️' },
-              { name: 'Iluminação', count: 45, slug: 'iluminacao', icon: '💡' },
-              { name: 'Lazer', count: 34, slug: 'lazer', icon: '🏖️' }
-            ].map((cat) => (
-              <Link key={cat.slug} href={`/catalogo/${cat.slug}`} className="group">
-                <Card className="h-full hover:border-pool transition-colors text-center p-6 flex flex-col items-center justify-center gap-2">
-                  <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">{cat.icon}</div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-pool">{cat.name}</h3>
-                  <p className="text-xs text-gray-500">{cat.count} produtos</p>
-                </Card>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+            {categoryShortcuts.map((cat) => (
+              <Link
+                key={cat.name}
+                href={cat.isSpecial ? '/parceiro-pro' : `/catalogo?categoria=${cat.slug}`}
+                className="group flex flex-col items-center text-center p-2.5 rounded-xl border border-gray-200/80 hover:border-[#008CB8] hover:shadow-md transition-all bg-white"
+              >
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mb-2 relative">
+                  {/* Image */}
+                  <img
+                    src={cat.image}
+                    alt={cat.alt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="text-[12px] font-semibold text-gray-800 group-hover:text-[#008CB8] transition-colors leading-tight line-clamp-2">
+                  {cat.name}
+                </span>
               </Link>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Section 3: Featured Products */}
-      <section className="py-20 bg-white">
+      {/* 3. PRODUTOS EM DESTAQUE + ANÁLISE GRATUITA DA ÁGUA (Lado a Lado) */}
+      <section className="py-10 md:py-14">
         <Container>
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-primary mb-4">Produtos em Destaque</h2>
-              <p className="text-gray-600">As melhores ofertas para sua piscina</p>
-            </div>
-            <Link href="/catalogo" className="hidden sm:flex items-center text-pool hover:text-primary transition-colors font-medium">
-              Ver todos <ChevronRight className="w-4 h-4 ml-1" />
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="group overflow-hidden flex flex-col">
-                <div className="relative aspect-square bg-gray-100">
-                  <div className="absolute top-2 left-2 z-10">
-                    <Badge variant="pool">Destaque</Badge>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-300">
-                    [Imagem do Produto {i}]
-                  </div>
-                </div>
-                <CardContent className="p-4 flex flex-col flex-1">
-                  <div className="text-xs text-gray-500 mb-1">Marca Exemplo</div>
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                    Cloro Granulado MultiAção 10kg Balde
-                  </h3>
-                  <div className="mt-auto pt-4 flex items-center justify-between">
-                    <span className="text-lg font-bold text-primary">{formatCurrency(29990)}</span>
-                  </div>
-                  <Button className="w-full mt-4" variant="outline">
-                    Adicionar ao Orçamento
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Section 4: Water Analysis CTA Banner */}
-      <section className="relative bg-pool text-white py-24 overflow-hidden">
-        {/* Decorative Wave SVG (simplified) */}
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
-          <svg className="relative block w-[calc(100%+1.3px)] h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white"></path>
-          </svg>
-        </div>
-
-        <Container className="relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2 space-y-6">
-              <div className="inline-flex items-center justify-center p-3 bg-white/20 rounded-2xl mb-4">
-                <Droplets className="w-10 h-10 text-white" />
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-                Análise Gratuita da Água da sua Piscina
-              </h2>
-              <p className="text-pool-100 text-lg">
-                Traga uma amostra da água da sua piscina em uma de nossas lojas. Nossos especialistas farão uma análise computadorizada e te entregarão um laudo completo com o tratamento ideal.
-              </p>
-              <Button size="lg" className="bg-white text-pool hover:bg-gray-100 font-bold mt-4" asChild>
-                <Link href="/analise-agua">Solicitar Análise</Link>
-              </Button>
-            </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="w-full max-w-md aspect-square bg-white/10 rounded-full flex items-center justify-center border-8 border-white/20">
-                <span className="text-white/50 text-xl font-medium">[Imagem Análise]</span>
-              </div>
-            </div>
-          </div>
-        </Container>
-
-        {/* Decorative Wave SVG (bottom) */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-[calc(100%+1.3px)] h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white"></path>
-          </svg>
-        </div>
-      </section>
-
-      {/* Section 5: About/Institutional */}
-      <section className="py-24 bg-white">
-        <Container>
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
-              <div className="aspect-[4/3] bg-gray-200 rounded-2xl overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                  [Foto da Loja/Equipe]
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/2 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                Mais de 15 anos cuidando do seu lazer
-              </h2>
-              <div className="w-20 h-1 bg-pool rounded-full"></div>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                A Piscinão Soluções nasceu com uma missão clara: tornar o cuidado com a sua piscina mais fácil, eficiente e econômico.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Nossa equipe de especialistas está sempre pronta para oferecer não apenas produtos, mas soluções reais para os desafios que você enfrenta na manutenção da sua água.
-              </p>
-              <div className="grid grid-cols-2 gap-6 pt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* LADO ESQUERDO: Produtos em destaque (9 colunas no desktop) */}
+            <div className="lg:col-span-9 space-y-6">
+              {/* Header da seção */}
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                 <div>
-                  <div className="text-4xl font-bold text-pool mb-2">+15k</div>
-                  <div className="text-sm text-gray-600 font-medium">Clientes Atendidos</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-pool mb-2">5</div>
-                  <div className="text-sm text-gray-600 font-medium">Lojas Físicas</div>
-                </div>
-              </div>
-              <Button variant="outline" className="mt-8" asChild>
-                <Link href="/sobre">Conhecer mais da nossa história</Link>
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Section 6: Testimonials */}
-      <section className="py-20 bg-cream">
-        <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-primary mb-4">O que dizem nossos clientes</h2>
-            <p className="text-gray-600">A satisfação de quem confia na Piscinão Soluções</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="bg-white border-none shadow-sm">
-                <CardContent className="p-8">
-                  <div className="flex gap-1 mb-6 text-yellow-400">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="w-5 h-5 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic mb-6">
-                    "O atendimento é excepcional. Fizeram a análise da minha água e me indicaram exatamente o que eu precisava. Minha piscina nunca esteve tão limpa!"
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-[#202020] tracking-tight">
+                    Produtos em destaque
+                  </h2>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                    Qualidade e as melhores marcas para o seu projeto.
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold">
-                      J
-                    </div>
-                    <div>
-                      <div className="font-bold text-primary">João Silva</div>
-                      <div className="text-sm text-gray-500">Cliente há 2 anos</div>
+                </div>
+                <Link
+                  href="/catalogo"
+                  className="text-xs sm:text-sm font-semibold text-[#008CB8] hover:text-[#007399] flex items-center gap-1 transition-colors self-start sm:self-auto"
+                >
+                  <span>Ver todos os produtos</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              {/* Grade de 5 produtos em destaque */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+                {featuredProducts.map((prod) => (
+                  <div
+                    key={prod.id}
+                    className="bg-white rounded-xl border border-gray-200/90 hover:border-gray-300 hover:shadow-md transition-all p-3 flex flex-col justify-between group relative"
+                  >
+                    {/* Botão de Favorito */}
+                    <button
+                      type="button"
+                      aria-label="Adicionar aos favoritos"
+                      className="absolute top-3 right-3 z-10 text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <Heart className="w-4 h-4" />
+                    </button>
+
+                    {/* Imagem do Produto */}
+                    <Link href={`/produto/${prod.slug}`} className="block">
+                      <div className="w-full aspect-square rounded-lg overflow-hidden bg-gray-50 mb-3 flex items-center justify-center p-2">
+                        <img
+                          src={prod.image}
+                          alt={prod.name}
+                          className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      {/* Nome do Produto */}
+                      <h3 className="text-xs font-medium text-gray-800 group-hover:text-[#008CB8] transition-colors line-clamp-2 h-8 leading-snug mb-2">
+                        {prod.name}
+                      </h3>
+                    </Link>
+
+                    {/* Preço e Botão */}
+                    <div className="pt-2 border-t border-gray-100 space-y-2.5">
+                      <div className="text-base font-extrabold text-[#202020]">
+                        {prod.price}
+                      </div>
+
+                      <Link href={`/produto/${prod.slug}`} className="block w-full">
+                        <button
+                          type="button"
+                          className="w-full bg-[#66361C] hover:bg-[#522a14] text-white text-[11px] font-semibold py-2 px-2 rounded-md transition-colors text-center"
+                        >
+                          Adicionar ao carrinho
+                        </button>
+                      </Link>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Section 7: Blog Preview */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-primary mb-4">Dicas do Especialista</h2>
-              <p className="text-gray-600">Aprenda a cuidar melhor da sua piscina</p>
+                ))}
+              </div>
             </div>
-            <Button variant="ghost" className="hidden sm:flex text-pool" asChild>
-              <Link href="/blog">Ver todos os artigos <ChevronRight className="w-4 h-4 ml-1" /></Link>
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
-                <div className="aspect-[16/9] bg-gray-200 relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                    [Imagem Blog {i}]
+
+            {/* LADO DIREITO: Card Destaque Análise Gratuita da Água (3 colunas no desktop) */}
+            <div className="lg:col-span-3">
+              <div className="bg-[#008CB8] text-white rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-md relative overflow-hidden h-full min-h-[460px]">
+                {/* Background water ripple accent */}
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-xs flex items-center justify-center text-white">
+                    <Droplets className="w-6 h-6 fill-current" />
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="text-sm text-pool font-semibold mb-2">Manutenção</div>
-                  <h3 className="font-bold text-xl text-primary mb-3">
-                    Como preparar sua piscina para o inverno
+
+                  <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight">
+                    Análise Gratuita <br />
+                    da Água
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    Descubra os passos essenciais para proteger sua piscina durante a estação mais fria do ano e evitar problemas.
+
+                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-light">
+                    Traga sua amostra e receba uma análise completa com orientação especializada.
                   </p>
-                  <Link href={`/blog/post-${i}`} className="text-pool font-medium hover:underline inline-flex items-center">
-                    Ler mais <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+
+                {/* Imagem demonstrativa de fita de teste / tubo */}
+                <div className="my-6 rounded-xl overflow-hidden shadow-inner bg-white/10 p-2">
+                  <img
+                    src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+                    alt="Análise de água com reagentes"
+                    className="w-full h-36 object-cover rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div>
+                  <Link
+                    href="/analise-agua"
+                    className="inline-flex items-center justify-center gap-1.5 bg-white text-[#008CB8] hover:bg-gray-100 font-bold text-xs sm:text-sm py-3 px-6 rounded-full w-full transition-all shadow"
+                  >
+                    <span>Saiba mais</span>
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Button variant="outline" className="w-full" asChild>
-               <Link href="/blog">Ver todos os artigos</Link>
-            </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-    </>
+      {/* 4. SEÇÃO PARCEIRO PRO - Exatamente como no mock visual */}
+      <section className="py-10 bg-white border-t border-b border-gray-200/80">
+        <Container>
+          <div className="relative rounded-2xl overflow-hidden border border-gray-200/90 shadow-sm bg-cover bg-center"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')`,
+            }}
+          >
+            {/* Scrim overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FBF7F2] via-[#FBF7F2]/95 to-transparent md:w-3/4" />
+
+            {/* Left Content Card */}
+            <div className="relative p-6 sm:p-10 lg:p-12 max-w-2xl space-y-6">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#66361C]">Programa Especial</span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#202020] tracking-tight mt-1">
+                  Parceiro Pro
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+                  Condições especiais para arquitetos, construtores, piscineiros e empresas.
+                </p>
+              </div>
+
+              {/* 4 Benefícios em destaque */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                {/* 1. Preços diferenciados */}
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#66361C]">
+                    <DollarSign className="w-4 h-4" />
+                  </div>
+                  <span className="text-[12px] font-semibold text-gray-800 leading-tight">
+                    Preços diferenciados
+                  </span>
+                </div>
+
+                {/* 2. Atendimento especializado */}
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#66361C]">
+                    <Headphones className="w-4 h-4" />
+                  </div>
+                  <span className="text-[12px] font-semibold text-gray-800 leading-tight">
+                    Atendimento especializado
+                  </span>
+                </div>
+
+                {/* 3. Suporte técnico */}
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#66361C]">
+                    <Wrench className="w-4 h-4" />
+                  </div>
+                  <span className="text-[12px] font-semibold text-gray-800 leading-tight">
+                    Suporte técnico
+                  </span>
+                </div>
+
+                {/* 4. Parceria de longo prazo */}
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#66361C]">
+                    <Handshake className="w-4 h-4" />
+                  </div>
+                  <span className="text-[12px] font-semibold text-gray-800 leading-tight">
+                    Parceria de longo prazo
+                  </span>
+                </div>
+              </div>
+
+              {/* CTA Quero ser parceiro */}
+              <div className="pt-2">
+                <Link
+                  href="/parceiro-pro"
+                  className="inline-flex items-center gap-2 bg-[#66361C] hover:bg-[#522a14] text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-md transition-all shadow hover:shadow-md"
+                >
+                  <span>Quero ser parceiro</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
   )
 }

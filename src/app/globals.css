@@ -571,6 +571,164 @@ a {
   background: #b55529;
 }
 
+/* Showcase Section (Apple/iGUi style) */
+.showcase-section {
+  padding: 40px 0;
+  background: #fbfbfd;
+}
+.showcase-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.showcase-head h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+.showcase-head .sub {
+  font-size: 18px;
+  color: var(--muted);
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.showcase-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 340px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.showcase-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.showcase-card-full {
+  grid-column: span 2;
+  min-height: 380px;
+}
+
+.showcase-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showcase-emoji {
+  font-size: 80px;
+  opacity: 0.8;
+}
+
+.showcase-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.showcase-light::after {
+  background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%);
+}
+
+.showcase-side {
+  flex-direction: row;
+}
+.showcase-side .showcase-bg {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+.showcase-side::after {
+  display: none;
+}
+.showcase-side .showcase-content {
+  width: 50%;
+  position: relative;
+  z-index: 3;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.showcase-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.showcase-content h3 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.showcase-content p {
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.4;
+  max-width: 400px;
+}
+
+/* Colors for dark/light */
+.showcase-dark .showcase-content {
+  color: #fff;
+}
+.showcase-light .showcase-content {
+  color: var(--text);
+}
+
+.showcase-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.showcase-dark .showcase-btn {
+  background: #fff;
+  color: var(--text);
+}
+.showcase-dark .showcase-btn:hover {
+  background: #f0f0f0;
+}
+.showcase-light .showcase-btn {
+  background: var(--brown);
+  color: #fff;
+}
+.showcase-light .showcase-btn:hover {
+  background: var(--brown2);
+}
+.showcase-side .showcase-content h3 {
+  font-size: 24px;
+}
+.showcase-side .showcase-content p {
+  font-size: 15px;
+}
+
 /* Responsiveness */
 @media (max-width: 1200px) {
   .grid-cat {
@@ -594,6 +752,26 @@ a {
 }
 
 @media (max-width: 768px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  .showcase-card-full {
+    grid-column: span 1;
+    min-height: 340px;
+  }
+  .showcase-side {
+    flex-direction: column;
+  }
+  .showcase-side .showcase-bg {
+    width: 100%;
+    height: 200px;
+  }
+  .showcase-side .showcase-content {
+    width: 100%;
+    padding: 24px;
+    align-items: center;
+    text-align: center;
+  }
   .wrap {
     padding: 0 16px;
   }

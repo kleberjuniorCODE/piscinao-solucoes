@@ -16,42 +16,110 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Categorias Principais (8 Atalhos) */}
-      <section className="cat-section">
+      {/* 2. Categorias Principais (Showcase) */}
+      <section className="showcase-section">
         <div className="wrap">
-          <div className="grid-cat">
-            <Link href="/catalogo?categoria=piscina-em-dia" className="cat-card">
-              <div className="cat-art">🏊</div>
-              <div className="cat-title">Piscina em Dia</div>
-            </Link>
-            <Link href="/catalogo?categoria=produtos-para-tratamento" className="cat-card">
-              <div className="cat-art" style={{ background: 'linear-gradient(135deg, #f4f7ff, #fff4ec)' }}>🧪</div>
-              <div className="cat-title">Produtos para Tratamento</div>
-            </Link>
-            <Link href="/catalogo?categoria=bombas-e-filtros" className="cat-card">
-              <div className="cat-art">⚙️</div>
-              <div className="cat-title">Bombas e Filtros</div>
-            </Link>
-            <Link href="/catalogo?categoria=aquecimento" className="cat-card">
-              <div className="cat-art">♨️</div>
-              <div className="cat-title">Aquecimento</div>
-            </Link>
-            <Link href="/catalogo?categoria=gerador-de-cloro" className="cat-card">
-              <div className="cat-art">💧</div>
-              <div className="cat-title">Gerador de Cloro</div>
-            </Link>
-            <Link href="/catalogo?categoria=decks-e-revestimentos" className="cat-card">
-              <div className="cat-art" style={{ background: 'linear-gradient(135deg, #f0e4d5, #d7a36f)' }}>▤</div>
-              <div className="cat-title">Decks e Revestimentos</div>
-            </Link>
-            <Link href="/catalogo?categoria=moveis-externos" className="cat-card">
-              <div className="cat-art" style={{ background: 'linear-gradient(135deg, #eef7ed, #f7efe7)' }}>🛋️</div>
-              <div className="cat-title">Móveis Externos</div>
-            </Link>
-            <Link href="/parceiro-pro" className="cat-card">
-              <div className="cat-art">🤝</div>
-              <div className="cat-title">Parceiro Pro</div>
-            </Link>
+          <div className="showcase-head">
+            <h2>Nossas Categorias</h2>
+            <div className="sub">Tudo para sua piscina e área de lazer em um só lugar.</div>
+          </div>
+          <div className="showcase-grid">
+            {/* 1. Piscinas */}
+            <div className="showcase-card showcase-card-full showcase-dark">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(to bottom right, #1a2a6c, #11998e)' }} data-category-image="piscinas">
+                <div className="showcase-emoji">🏊‍♀️</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Piscinas</h3>
+                <p>Transforme seu espaço com a piscina dos seus sonhos.</p>
+                <Link href="/catalogo?categoria=piscinas" className="showcase-btn">Explorar</Link>
+              </div>
+            </div>
+
+            {/* 2. Produtos Químicos */}
+            <div className="showcase-card showcase-light">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #fdfbfb, #ebedee)' }} data-category-image="produtos-quimicos">
+                <div className="showcase-emoji">🧪</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Produtos Químicos</h3>
+                <p>Tratamento profissional para água cristalina.</p>
+                <Link href="/catalogo?categoria=produtos-quimicos" className="showcase-btn">Saiba mais</Link>
+              </div>
+            </div>
+
+            {/* 3. Equipamentos */}
+            <div className="showcase-card showcase-dark">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #434343, #000000)' }} data-category-image="equipamentos">
+                <div className="showcase-emoji">⚙️</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Equipamentos</h3>
+                <p>Bombas, filtros e automação de alta performance.</p>
+                <Link href="/catalogo?categoria=equipamentos" className="showcase-btn">Explorar</Link>
+              </div>
+            </div>
+
+            {/* 4. Aquecimento */}
+            <div className="showcase-card showcase-light">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #ffecd2, #fcb69f)' }} data-category-image="aquecimento">
+                <div className="showcase-emoji">♨️</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Aquecimento</h3>
+                <p>Aproveite sua piscina o ano inteiro.</p>
+                <Link href="/catalogo?categoria=aquecimento" className="showcase-btn">Saiba mais</Link>
+              </div>
+            </div>
+
+            {/* 5. Acessórios */}
+            <div className="showcase-card showcase-side showcase-light">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #e0c3fc, #8ec5fc)' }} data-category-image="acessorios">
+                <div className="showcase-emoji">🏖️</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Acessórios</h3>
+                <p>Encontre os melhores acessórios para sua piscina.</p>
+                <Link href="/catalogo?categoria=acessorios" className="showcase-btn">Explorar</Link>
+              </div>
+            </div>
+
+            {/* 6. Iluminação */}
+            <div className="showcase-card showcase-dark">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #30cfd0, #330867)' }} data-category-image="iluminacao">
+                <div className="showcase-emoji">💡</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Iluminação</h3>
+                <p>LED RGB e efeitos especiais para sua área de lazer.</p>
+                <Link href="/catalogo?categoria=iluminacao" className="showcase-btn">Saiba mais</Link>
+              </div>
+            </div>
+
+            {/* 7. Móveis e Lazer */}
+            <div className="showcase-card showcase-light">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #f6d365, #fda085)' }} data-category-image="moveis-e-lazer">
+                <div className="showcase-emoji">🪑</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Móveis e Lazer</h3>
+                <p>Conforto e estilo para sua área externa.</p>
+                <Link href="/catalogo?categoria=moveis-e-lazer" className="showcase-btn">Explorar</Link>
+              </div>
+            </div>
+
+            {/* 8. Serviços */}
+            <div className="showcase-card showcase-card-full showcase-dark">
+              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #141e30, #243b55)' }} data-category-image="servicos">
+                <div className="showcase-emoji">🔧</div>
+              </div>
+              <div className="showcase-content">
+                <h3>Serviços</h3>
+                <p>Manutenção, instalação e suporte especializado.</p>
+                <Link href="/catalogo?categoria=servicos" className="showcase-btn">Saiba mais</Link>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

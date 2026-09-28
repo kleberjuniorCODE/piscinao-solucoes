@@ -116,9 +116,110 @@ a {
   color: var(--brown2);
 }
 
-/* Hero */
+/* iGUi-style Transparent Header */
+.igui-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+  padding: 18px 0;
+}
+.igui-header.solid-header {
+  position: relative;
+  background: linear-gradient(90deg, #713014, #8d401c);
+  padding: 14px 0;
+}
+.igui-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Logo with semi-transparent background (solicitado pelo usuário com base no site iGUi) */
+.logo-pill {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s, transform 0.2s;
+}
+.logo-pill:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+.logo-pill-text {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Center navigation links */
+.igui-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.igui-nav a {
+  position: relative;
+  transition: opacity 0.2s;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.igui-nav a:hover {
+  opacity: 0.85;
+}
+
+/* Right side actions */
+.igui-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+}
+.igui-sales {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.igui-pill-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
+}
+.igui-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* Hero Section ajustado para overlay com o topo transparente */
 .hero-section {
-  min-height: 460px;
+  min-height: 560px;
+  padding-top: 130px;
   position: relative;
   background: linear-gradient(90deg, rgba(25, 15, 8, 0.82) 0%, rgba(25, 15, 8, 0.6) 45%, rgba(25, 15, 8, 0.15) 85%),
               url('/hero-bg.webp') center 40%/cover no-repeat;

@@ -23,3 +23,21 @@ export async function getCategories() {
   }
   return data || [];
 }
+
+export async function getCategoryBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('categories').select('*').eq('slug', slug).single();
+  if (error) return null;
+  return data;
+}
+
+export async function getProductBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, product_variants(*), product_media(*)')
+    .eq('slug', slug)
+    .single();
+  if (error) return null;
+  return data;
+}

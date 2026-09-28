@@ -44,7 +44,10 @@ export default function AnaliseAguaPage() {
           <Card>
             <CardContent className="p-6">
               <h3 className="text-xl font-bold mb-6 text-primary">Pré-cadastro para Análise</h3>
-              <form action={submitWaterRequest} className="space-y-4">
+              <form action={async (formData: FormData) => {
+                'use server'
+                await submitWaterRequest(formData)
+              }} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Unidade da Loja</label>

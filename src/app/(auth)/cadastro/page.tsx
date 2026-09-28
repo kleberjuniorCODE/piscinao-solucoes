@@ -21,7 +21,10 @@ export default function CadastroPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={submitRegistration} className="space-y-4">
+          <form action={async (formData: FormData) => {
+            'use server'
+            await submitRegistration(formData)
+          }} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="nome" className="text-sm font-medium leading-none">Nome Completo</label>
               <Input id="nome" name="nome" required placeholder="Seu nome" />

@@ -1,11 +1,11 @@
 'use server'
 
-import { createServerClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function submitQuote(formData: FormData) {
   const notes = formData.get('notes') as string;
-  const supabase = createServerClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) return { error: 'Not authenticated' };

@@ -18,7 +18,10 @@ export default function ContatoPage() {
           <Card>
             <CardContent className="p-6">
               <h2 className="text-xl font-semibold mb-4">Envie uma Mensagem</h2>
-              <form action={submitContactForm} className="space-y-4">
+              <form action={async (formData: FormData) => {
+                'use server'
+                await submitContactForm(formData)
+              }} className="space-y-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Nome</label>
                   <Input name="name" required />

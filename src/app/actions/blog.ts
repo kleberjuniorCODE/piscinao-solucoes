@@ -1,9 +1,9 @@
 'use server'
 
-import { createServerClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 
 export async function getPosts(page: string | undefined, search: string | undefined) {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   let query = supabase.from('posts').select('*').eq('status', 'published').order('published_at', { ascending: false });
   
   if (search) {
@@ -21,14 +21,14 @@ export async function getPosts(page: string | undefined, search: string | undefi
 }
 
 export async function getPostBySlug(slug: string) {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.from('posts').select('*').eq('slug', slug).single();
   if (error) return null;
   return data;
 }
 
 export async function getLatestPosts(limit: number = 3) {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.from('posts').select('*').eq('status', 'published').order('published_at', { ascending: false }).limit(limit);
   if (error) {
     console.error(error);

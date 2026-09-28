@@ -3,31 +3,42 @@ import { cn } from "@/lib/utils"
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'icon'
   isLoading?: boolean
+  asChild?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', isLoading, asChild = false, children, disabled, ...props }, ref) => {
+    const classes = cn(
+      "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+      {
+        "bg-primary text-white hover:bg-primary/90": variant === 'primary',
+        "bg-pool text-white hover:bg-pool/90": variant === 'secondary',
+        "border border-primary text-primary hover:bg-primary/10": variant === 'outline',
+        "hover:bg-accent hover:text-accent-foreground text-primary": variant === 'ghost',
+        "bg-red-600 text-white hover:bg-red-700": variant === 'destructive',
+        "h-8 px-3 text-xs": size === 'sm',
+        "h-10 py-2 px-4 text-sm": size === 'md',
+        "h-12 px-8 text-base": size === 'lg',
+        "h-10 w-10 p-0": size === 'icon',
+      },
+      className
+    )
+
+    if (asChild && React.isValidElement(children)) {
+      return React.cloneElement(children as React.ReactElement<any>, {
+        className: cn(classes, (children.props as any).className),
+        ...props,
+      })
+    }
+
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
         aria-disabled={disabled || isLoading}
-        className={cn(
-          "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none",
-          {
-            "bg-primary text-white hover:bg-primary/90": variant === 'primary',
-            "bg-pool text-white hover:bg-pool/90": variant === 'secondary',
-            "border border-primary text-primary hover:bg-primary/10": variant === 'outline',
-            "hover:bg-accent hover:text-accent-foreground text-primary": variant === 'ghost',
-            "bg-red-600 text-white hover:bg-red-700": variant === 'destructive',
-            "h-8 px-3 text-xs": size === 'sm',
-            "h-10 py-2 px-4 text-sm": size === 'md',
-            "h-12 px-8 text-base": size === 'lg',
-          },
-          className
-        )}
+        className={classes}
         {...props}
       >
         {isLoading && (

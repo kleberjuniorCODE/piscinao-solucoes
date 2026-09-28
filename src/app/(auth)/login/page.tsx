@@ -13,7 +13,10 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <form action={signIn} className="space-y-6">
+      <form action={async (formData: FormData) => {
+        'use server'
+        await signIn(formData)
+      }} className="space-y-6">
         <Input
           label="E-mail"
           id="email"

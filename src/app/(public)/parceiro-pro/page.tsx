@@ -50,7 +50,10 @@ export default function ParceiroProPage() {
           <h2 className="text-2xl font-bold mb-6 text-center">Formulário de Cadastro</h2>
           <Card>
             <CardContent className="p-6">
-              <form action={submitPartnerApplication} className="space-y-4">
+              <form action={async (formData: FormData) => {
+                'use server'
+                await submitPartnerApplication(formData)
+              }} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Nome da Empresa / Profissional</label>

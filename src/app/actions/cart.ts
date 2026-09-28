@@ -1,10 +1,10 @@
 'use server'
 
-import { createServerClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function getOrCreateCart() {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return null;
 
@@ -32,7 +32,7 @@ export async function addToCart(variantId: string, quantity: number) {
   const cart = await getOrCreateCart();
   if (!cart) return { error: 'User not authenticated' };
   
-  const supabase = createServerClient();
+  const supabase = await createClient();
   
   // check if item exists
   const { data: existingItem } = await supabase
@@ -58,7 +58,7 @@ export async function addToCart(variantId: string, quantity: number) {
 }
 
 export async function removeCartItem(itemId: string) {
-  const supabase = createServerClient();
+  const supabase = await createClient();
   await supabase.from('cart_items').delete().eq('id', itemId);
   revalidatePath('/', 'layout');
   return { success: true };

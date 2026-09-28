@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Container } from '../ui/container'
-import { Instagram, Facebook, Youtube, MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { Globe, Share2, Video, MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
@@ -23,14 +23,14 @@ export function Footer() {
               Tudo para sua piscina em um só lugar. Oferecemos os melhores produtos, equipamentos e serviços especializados para garantir a qualidade da sua água.
             </p>
             <div className="flex gap-4 pt-2">
-              <a href="#" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
-                <Instagram className="w-4 h-4" />
+              <a href="#" aria-label="Instagram" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
+                <Globe className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
-                <Facebook className="w-4 h-4" />
+              <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
+                <Share2 className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
-                <Youtube className="w-4 h-4" />
+              <a href="#" aria-label="YouTube" className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-pool hover:text-white transition-colors">
+                <Video className="w-4 h-4" />
               </a>
             </div>
           </div>

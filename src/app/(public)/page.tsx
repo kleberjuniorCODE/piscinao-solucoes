@@ -16,110 +16,93 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Categorias Principais (Showcase) */}
-      <section className="showcase-section">
-        <div className="wrap">
-          <div className="showcase-head">
-            <h2>Nossas Categorias</h2>
-            <div className="sub">Tudo para sua piscina e área de lazer em um só lugar.</div>
+      {/* 2. Categorias Principais (Showcase Edge-to-Edge sem emojis com fotos reais) */}
+      <section className="edge-showcase">
+        {/* Bloco 1: Destaque Piscinas (Full Screen Width) */}
+        <div className="edge-banner edge-banner-piscinas">
+          <div className="edge-overlay"></div>
+          <div className="edge-content">
+            <span className="edge-tag">PISCINAS SOB MEDIDA</span>
+            <h2>Piscinas em Alvenaria, Vinil e Fibra</h2>
+            <p>
+              Projetos exclusivos para transformar sua casa em um refúgio de lazer com suporte técnico especializado.
+            </p>
+            <div className="edge-actions">
+              <Link href="/catalogo?categoria=piscinas" className="edge-btn-primary">
+                Conheça nossos modelos
+              </Link>
+              <Link href="/minha-conta/orcamentos" className="edge-btn-outline">
+                Solicitar orçamento
+              </Link>
+            </div>
           </div>
-          <div className="showcase-grid">
-            {/* 1. Piscinas */}
-            <div className="showcase-card showcase-card-full showcase-dark">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(to bottom right, #1a2a6c, #11998e)' }} data-category-image="piscinas">
-                <div className="showcase-emoji">🏊‍♀️</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Piscinas</h3>
-                <p>Transforme seu espaço com a piscina dos seus sonhos.</p>
-                <Link href="/catalogo?categoria=piscinas" className="showcase-btn">Explorar</Link>
+        </div>
+
+        {/* Bloco 2: Split 50% / 50% (Equipamentos & Químicos) */}
+        <div className="edge-split">
+          <div className="edge-split-item edge-bg-equipamentos">
+            <div className="edge-overlay"></div>
+            <div className="edge-content">
+              <span className="edge-tag">EQUIPAMENTOS & BOMBAS</span>
+              <h3>Bombas, Filtros & Aquecedores</h3>
+              <p>Automação e alta performance para manter sua piscina limpa e na temperatura ideal o ano inteiro.</p>
+              <div className="edge-actions">
+                <Link href="/catalogo?categoria=bombas-e-filtros" className="edge-btn-primary">
+                  Ver Equipamentos
+                </Link>
+                <Link href="/catalogo?categoria=aquecimento" className="edge-btn-outline">
+                  Aquecimento
+                </Link>
               </div>
             </div>
+          </div>
 
-            {/* 2. Produtos Químicos */}
-            <div className="showcase-card showcase-light">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #fdfbfb, #ebedee)' }} data-category-image="produtos-quimicos">
-                <div className="showcase-emoji">🧪</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Produtos Químicos</h3>
-                <p>Tratamento profissional para água cristalina.</p>
-                <Link href="/catalogo?categoria=produtos-quimicos" className="showcase-btn">Saiba mais</Link>
+          <div className="edge-split-item edge-bg-quimicos">
+            <div className="edge-overlay"></div>
+            <div className="edge-content">
+              <span className="edge-tag">TRATAMENTO DA ÁGUA</span>
+              <h3>Linha Química Profissional</h3>
+              <p>Cloros, algicidas e clarificantes Hidroall para uma água 100% pura, cristalina e saudável.</p>
+              <div className="edge-actions">
+                <Link href="/catalogo?categoria=produtos-para-tratamento" className="edge-btn-primary">
+                  Ver Linha Química
+                </Link>
+                <Link href="/analise-agua" className="edge-btn-outline">
+                  Análise Gratuita
+                </Link>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* 3. Equipamentos */}
-            <div className="showcase-card showcase-dark">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #434343, #000000)' }} data-category-image="equipamentos">
-                <div className="showcase-emoji">⚙️</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Equipamentos</h3>
-                <p>Bombas, filtros e automação de alta performance.</p>
-                <Link href="/catalogo?categoria=equipamentos" className="showcase-btn">Explorar</Link>
+        {/* Bloco 3: Split 50% / 50% (Robôs/LEDs & Spas/Lazer) */}
+        <div className="edge-split">
+          <div className="edge-split-item edge-bg-acessorios">
+            <div className="edge-overlay"></div>
+            <div className="edge-content">
+              <span className="edge-tag">TECNOLOGIA & PRATICIDADE</span>
+              <h3>Robôs Aspiradores & Iluminação LED</h3>
+              <p>Limpeza automatizada inteligente e iluminação subaquática RGB para momentos inesquecíveis.</p>
+              <div className="edge-actions">
+                <Link href="/catalogo?categoria=piscina-em-dia" className="edge-btn-primary">
+                  Explorar Robôs & LEDs
+                </Link>
               </div>
             </div>
+          </div>
 
-            {/* 4. Aquecimento */}
-            <div className="showcase-card showcase-light">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #ffecd2, #fcb69f)' }} data-category-image="aquecimento">
-                <div className="showcase-emoji">♨️</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Aquecimento</h3>
-                <p>Aproveite sua piscina o ano inteiro.</p>
-                <Link href="/catalogo?categoria=aquecimento" className="showcase-btn">Saiba mais</Link>
+          <div className="edge-split-item edge-bg-spa">
+            <div className="edge-overlay"></div>
+            <div className="edge-content">
+              <span className="edge-tag">CONFORTO & LAZER</span>
+              <h3>Spas, Decks & Banheiras</h3>
+              <p>Ambientes completos de bem-estar com móveis externos, cascatas e hidromassagem sob medida.</p>
+              <div className="edge-actions">
+                <Link href="/catalogo?categoria=decks-e-revestimentos" className="edge-btn-primary">
+                  Conhecer Linha Lazer
+                </Link>
               </div>
             </div>
-
-            {/* 5. Acessórios */}
-            <div className="showcase-card showcase-side showcase-light">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #e0c3fc, #8ec5fc)' }} data-category-image="acessorios">
-                <div className="showcase-emoji">🏖️</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Acessórios</h3>
-                <p>Encontre os melhores acessórios para sua piscina.</p>
-                <Link href="/catalogo?categoria=acessorios" className="showcase-btn">Explorar</Link>
-              </div>
-            </div>
-
-            {/* 6. Iluminação */}
-            <div className="showcase-card showcase-dark">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #30cfd0, #330867)' }} data-category-image="iluminacao">
-                <div className="showcase-emoji">💡</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Iluminação</h3>
-                <p>LED RGB e efeitos especiais para sua área de lazer.</p>
-                <Link href="/catalogo?categoria=iluminacao" className="showcase-btn">Saiba mais</Link>
-              </div>
-            </div>
-
-            {/* 7. Móveis e Lazer */}
-            <div className="showcase-card showcase-light">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #f6d365, #fda085)' }} data-category-image="moveis-e-lazer">
-                <div className="showcase-emoji">🪑</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Móveis e Lazer</h3>
-                <p>Conforto e estilo para sua área externa.</p>
-                <Link href="/catalogo?categoria=moveis-e-lazer" className="showcase-btn">Explorar</Link>
-              </div>
-            </div>
-
-            {/* 8. Serviços */}
-            <div className="showcase-card showcase-card-full showcase-dark">
-              <div className="showcase-bg" style={{ background: 'linear-gradient(135deg, #141e30, #243b55)' }} data-category-image="servicos">
-                <div className="showcase-emoji">🔧</div>
-              </div>
-              <div className="showcase-content">
-                <h3>Serviços</h3>
-                <p>Manutenção, instalação e suporte especializado.</p>
-                <Link href="/catalogo?categoria=servicos" className="showcase-btn">Saiba mais</Link>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
